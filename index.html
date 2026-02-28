@@ -1,27 +1,2334 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maryam Sultani – Graphic Designer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b2cbf'/><stop offset='100%25' stop-color='%2300d4ff'/></linearGradient></defs><text y='.9em' x='50%25' text-anchor='middle' font-size='80' fill='url(%23g)'>✦</text></svg>" type="image/svg+xml">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+           ============================================ */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent-blue: #0f3460;
+            --accent-purple: #7b2cbf;
+            --highlight: #9d4edd;
+            --glow-blue: #00d4ff;
+            --glow-purple: #e040fb;
+            --white: #ffffff;
+            --light: #f8f9fa;
+            --muted: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <script type="module" crossorigin src="/assets/index-B_rghAXd.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BMxP3RxA.css">
-  </head>
+        a {
+            text-decoration: none !important;
+        }
 
-  <body>
-    <div id="root"></div>
-  </body>
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--primary);
+            color: var(--white);
+            overflow-x: hidden;
+            max-width: 100vw;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(123, 44, 191, 0.5);
+        }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            padding: 0 2rem;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar .nav-link {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 1.25rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--glow-blue));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--glow-blue);
+        }
+
+        .navbar .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-left: 0.5rem;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, var(--accent-purple), var(--highlight));
+            box-shadow: 0 0 25px rgba(123, 44, 191, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            width: 30px;
+            height: 2px;
+            background: var(--white);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before { top: -8px; }
+        .navbar-toggler-icon::after { top: 8px; }
+
+        /* Offcanvas */
+        .offcanvas {
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .offcanvas-header .btn-close {
+            filter: invert(1);
+        }
+
+        .offcanvas-body .nav-link {
+            color: var(--white);
+            font-size: 1.2rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .offcanvas-body .nav-link:hover {
+            padding-left: 1.5rem;
+            color: var(--glow-blue);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent-blue) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(123, 44, 191, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--glow-purple), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--accent-purple), var(--highlight));
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+       
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4);
+        }
+
+        .btn-gradient:hover::before {
+            left: 0;
+        }
+
+        .hero-image-container {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 450px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+                        0 0 60px rgba(123, 44, 191, 0.3);
+        }
+
+        /* Floating 3D Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            font-size: 3rem;
+            color: var(--glow-blue);
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 5%;
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            animation-delay: 1s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 20%;
+            right: 15%;
+            font-size: 2rem;
+            color: var(--glow-purple);
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            font-size: 3rem;
+            color: var(--glow-blue);
+            animation-delay: 1.5s;
+        }
+
+        .floating-element:nth-child(5) {
+            top: 40%;
+            right: 5%;
+            font-size: 1.5rem;
+            color: var(--highlight);
+            animation-delay: 0.5s;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-purple);
+            top: -100px;
+            left: -100px;
+            opacity: 0.3;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--glow-blue);
+            bottom: 10%;
+            right: 20%;
+            opacity: 0.2;
+            animation-delay: 2s;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            padding: 100px 0;
+            position: relative;
+            background: var(--secondary);
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(123, 44, 191, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--glow-blue));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .skill-progress {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-purple), var(--glow-blue));
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .projects {
+            padding: 100px 0;
+            position: relative;
+            background: var(--primary);
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.95) 0%, transparent 60%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .project-card:hover .project-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .project-category {
+            font-size: 0.85rem;
+            color: var(--glow-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        .services {
+            padding: 100px 0;
+            position: relative;
+            background: var(--secondary);
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--glow-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(123, 44, 191, 0.3);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, rgba(123, 44, 191, 0.2), rgba(0, 212, 255, 0.2));
+            border-radius: 50%;
+            font-size: 2rem;
+            color: var(--glow-blue);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--accent-purple), var(--highlight));
+            box-shadow: 0 0 30px rgba(123, 44, 191, 0.5);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials {
+            padding: 100px 0;
+            position: relative;
+            background: var(--primary);
+        }
+
+        .testimonial-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 1rem;
+        }
+
+        .testimonial-quote {
+            font-size: 4rem;
+            color: var(--accent-purple);
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--glow-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .testimonial-info h5 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .testimonial-info span {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid var(--white);
+            opacity: 0.6;
+            margin: 0 4px;
+            padding: 0;
+        }
+
+        .carousel-indicators button.active {
+            background-color: var(--white);
+            opacity: 1;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            padding: 100px 0;
+            position: relative;
+            background: var(--secondary);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            font-size: 1.5rem;
+            color: var(--glow-blue);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover .contact-icon {
+            background: linear-gradient(135deg, var(--accent-purple), var(--highlight));
+            box-shadow: 0 0 30px rgba(123, 44, 191, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .contact-info-item h5 {
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .contact-info-item p {
+            color: var(--muted);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: var(--glass-bg);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(123, 44, 191, 0.3);
+            color: var(--white);
+        }
+
+        .form-control::placeholder {
+            color: var(--muted);
+        }
+
+        .form-floating label {
+            color: var(--muted);
+        }
+
+        .form-floating .form-control:focus ~ label,
+        .form-floating .form-control:not(:placeholder-shown) ~ label {
+            color: var(--glow-blue);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 60px 0 30px;
+            position: relative;
+            background: linear-gradient(180deg, var(--secondary), var(--primary));
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-purple), var(--glow-blue), transparent);
+        }
+
+        .footer-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230f3460' fill-opacity='0.3' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer p {
+            color: var(--muted);
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            text-decoration: none !important;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--glow-blue) !important;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes morphShape {
+            0%, 100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            25% {
+                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+            }
+            50% {
+                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+            }
+            75% {
+                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+            }
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 991px) {
+            .navbar .container {
+                position: relative;
+            }
+
+            .navbar-collapse {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                max-width: 320px;
+                height: 380px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero {
+                padding-top: 90px;
+                padding-bottom: 40px;
+                text-align: center;
+            }
+
+            .hero .row {
+                flex-direction: column-reverse;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero p {
+                margin: 0 auto 1.5rem;
+            }
+
+            .hero-image-container {
+                margin-top: 1.5rem;
+                text-align: center;
+            }
+
+            .hero-image {
+                max-width: 240px;
+                height: 280px;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            .about, .projects, .services, .testimonials, .contact {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .section-subtitle {
+                margin-bottom: 2rem;
+            }
+
+            .glass-card, .service-card {
+                padding: 1.25rem;
+            }
+
+            .about .row {
+                flex-direction: column;
+            }
+
+            .about .col-lg-6:first-child {
+                order: 2;
+            }
+
+            .about .col-lg-6:last-child {
+                order: 1;
+                margin-bottom: 1.5rem;
+            }
+
+            .projects .row {
+                flex-direction: column;
+            }
+
+            .services .row {
+                flex-direction: column;
+            }
+
+            .services .col-md-6, 
+            .services .col-lg-3 {
+                width: 100%;
+            }
+
+            .testimonials .carousel-inner {
+                padding: 0 0.5rem;
+            }
+
+            .contact .row {
+                flex-direction: column;
+            }
+
+            .contact .col-lg-5,
+            .contact .col-lg-7 {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding-top: 85px;
+                padding-bottom: 30px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .hero-image {
+                max-width: 200px;
+                height: 240px;
+            }
+
+            .btn-gradient {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .about, .projects, .services, .testimonials, .contact {
+                padding: 40px 0;
+            }
+
+            .glass-card p {
+                font-size: 0.9rem;
+            }
+
+            .skill-name {
+                font-size: 0.8rem;
+            }
+
+            .display-4 {
+                font-size: 2rem !important;
+            }
+
+            .project-card img {
+                height: 200px;
+            }
+
+            .project-info {
+                padding: 1rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-category {
+                font-size: 0.7rem;
+            }
+
+            .service-card {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            .service-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            .service-card h4 {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .service-card p {
+                font-size: 0.8rem;
+            }
+
+            .testimonial-card {
+                padding: 1.25rem;
+                margin: 0.25rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.85rem;
+            }
+
+            .testimonial-quote {
+                font-size: 2.5rem;
+            }
+
+            .testimonial-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .testimonial-info h5 {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-info span {
+                font-size: 0.75rem;
+            }
+
+            .contact-info-item {
+                flex-direction: row;
+                text-align: left;
+                gap: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+                flex-shrink: 0;
+            }
+
+            .contact-info-item h5 {
+                font-size: 0.9rem;
+            }
+
+            .contact-info-item p {
+                font-size: 0.8rem;
+            }
+
+            .form-control {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .form-floating > .form-control, 
+            .form-floating > .form-select {
+                height: 3rem;
+            }
+
+            .form-floating > label {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .btn-gradient.w-100 {
+                width: 100% !important;
+            }
+
+            .footer {
+                padding: 30px 0 20px;
+            }
+
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+
+            .footer p {
+                font-size: 0.85rem;
+            }
+
+            .footer h5 {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer ul li {
+                font-size: 0.85rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-bottom {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                font-size: 0.75rem;
+            }
+
+            .carousel-indicators {
+                bottom: -5px;
+            }
+
+            .carousel-indicators button {
+                width: 8px;
+                height: 8px;
+                border-width: 1.5px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.85rem;
+            }
+
+            .hero-image {
+                max-width: 170px;
+                height: 200px;
+            }
+
+            .btn-gradient {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.35rem;
+            }
+
+            .glass-card {
+                padding: 1rem;
+            }
+
+            .project-card img {
+                height: 180px;
+            }
+
+            .service-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .testimonial-card {
+                padding: 1rem;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+            .navbar-collapse {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                max-width: 350px;
+                height: 400px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding-top: 90px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                max-width: 250px;
+                height: 300px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .about, .projects, .services, .testimonials, .contact {
+                padding: 50px 0;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .project-card img {
+                height: 250px;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .service-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .testimonial-card {
+                padding: 2rem;
+                margin: 0.5rem;
+            }
+
+            .contact-info-item {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .contact-icon {
+                flex-shrink: 0;
+            }
+
+            .form-floating > .form-control, 
+            .form-floating > .form-select {
+                height: 3.5rem;
+                padding: 1rem 1.25rem;
+            }
+
+            .form-floating > label {
+                padding: 1rem 1.25rem;
+            }
+
+            .btn-gradient {
+                padding: 0.9rem 2rem;
+            }
+
+            .footer-social {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero {
+                padding-top: 100px;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-image-container {
+                margin-top: 2rem;
+            }
+
+            .hero-image {
+                max-width: 280px;
+                height: 320px;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            .about, .projects, .services, .testimonials, .contact {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .glass-card, .service-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 100px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .hero-image {
+                max-width: 220px;
+                height: 260px;
+            }
+
+            .btn-gradient {
+                padding: 0.875rem 1.75rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .glass-card {
+                padding: 1.25rem;
+            }
+
+            .about, .projects, .services, .testimonials, .contact {
+                padding: 50px 0;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .service-card h4 {
+                font-size: 1.1rem;
+            }
+
+            .service-card p {
+                font-size: 0.85rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+                margin: 0.5rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.95rem;
+            }
+
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .contact-icon {
+                margin: 0 auto;
+            }
+
+            .form-control {
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            .footer {
+                padding: 40px 0 20px;
+            }
+
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+
+            .footer h5 {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-bottom {
+                margin-top: 2rem;
+                padding-top: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .project-card img {
+                height: 220px;
+            }
+
+            .project-title {
+                font-size: 1.1rem;
+            }
+
+            .project-category {
+                font-size: 0.75rem;
+            }
+
+            .skill-bar {
+                margin-bottom: 1rem;
+            }
+
+            .skill-name {
+                font-size: 0.85rem;
+            }
+
+            .display-4 {
+                font-size: 2rem !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.875rem;
+            }
+
+            .hero-image {
+                max-width: 180px;
+                height: 220px;
+            }
+
+            .section-title {
+                font-size: 1.35rem;
+            }
+
+            .glass-card p {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-card {
+                padding: 1.25rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.875rem;
+            }
+
+            .testimonial-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .testimonial-info h5 {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-info span {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--highlight);
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         NAVBAR
+         ============================================ -->
+    <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+            <!-- Logo -->
+            <a class="logo-text" href="#">Maryam</a>
+
+            <!-- Desktop Navigation -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="d-none d-lg-flex">
+                    <a href="#" class="social-icon" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Google">
+                        <i class="fab fa-google"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Offcanvas Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header">
+            <h5 class="logo-text">Maryam</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home" data-bs-dismiss="offcanvas">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about" data-bs-dismiss="offcanvas">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects" data-bs-dismiss="offcanvas">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services" data-bs-dismiss="offcanvas">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#testimonials" data-bs-dismiss="offcanvas">Testimonials</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact" data-bs-dismiss="offcanvas">Contact</a>
+                </li>
+            </ul>
+            <div class="mt-4 pt-3 border-top">
+                <div class="d-flex gap-3">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="home">
+        <!-- Background Shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+
+        <!-- Floating 3D Elements -->
+        <div class="floating-element">
+            <i class="fas fa-pen-nib"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-palette"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-shapes"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-font"></i>
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content ms-2">
+                        <h1>Creative <span>Graphic Designer</span></h1>
+                        <p>I'm Maryam Sultani, a passionate graphic designer crafting stunning visual experiences that elevate brands and captivate audiences.</p>
+                        <a href="#projects" class="btn-gradient">View My Work</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <div class="hero-image-container text-lg-end">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&h=600&fit=crop&crop=face" 
+                             alt="Maryam Sultani - Graphic Designer" 
+                             class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+         ============================================ -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0 reveal">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Turning ideas into visual masterpieces</p>
+                    <div class="glass-card">
+                        <p>Hello! I'm <strong>Maryam Sultani</strong>, a professional graphic designer with a passion for creating compelling visual designs. With years of experience in the creative industry, I specialize in logo design, brand identity, print materials, and social media graphics.</p>
+                        <p class="mt-3 mb-4">I believe in the power of design to transform businesses and create lasting impressions. Every project I work on is approached with creativity, attention to detail, and a commitment to excellence.</p>
+                        
+                        <!-- Skills -->
+                        <div class="skills">
+                            <div class="skill-bar">
+                                <div class="skill-name">
+                                    <span>Adobe Photoshop</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-name">
+                                    <span>Adobe Illustrator</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-name">
+                                    <span>Brand Identity</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="92"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-name">
+                                    <span>UI/UX Design</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="85"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 reveal">
+                    <div class="row g-4">
+                        <div class=" col-md-3 col-lg-6">
+                            <div class="glass-card text-center h-100">
+                                <h3 class="display-4 fw-bold" style="background: linear-gradient(135deg, var(--glow-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">2+</h3>
+                                <p class="mb-0">Years Experience</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-6">
+                            <div class="glass-card text-center h-100">
+                                <h3 class="display-4 fw-bold" style="background: linear-gradient(135deg, var(--accent-purple), var(--glow-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">15+</h3>
+                                <p class="mb-0">Projects Completed</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-6">
+                            <div class="glass-card text-center h-100">
+                                <h3 class="display-4 fw-bold" style="background: linear-gradient(135deg, var(--glow-purple), var(--glow-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">10+</h3>
+                                <p class="mb-0">Happy Clients</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-6">
+                            <div class="glass-card text-center h-100">
+                                <h3 class="display-4 fw-bold" style="background: linear-gradient(135deg, var(--highlight), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">7+</h3>
+                                <p class="mb-0">Awards Won</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROJECTS SECTION
+         ============================================ -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <h2 class="section-title">My Projects</h2>
+                <p class="section-subtitle">Showcasing my creative work across various categories</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop" alt="Logo Design">
+                        <div class="project-info">
+                            <span class="project-category">Logo Design</span>
+                            <h4 class="project-title">Brand Logo Collection</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=600&h=400&fit=crop" alt="Poster Design">
+                        <div class="project-info">
+                            <span class="project-category">Poster Design</span>
+                            <h4 class="project-title">Creative Posters</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop" alt="Brand Identity">
+                        <div class="project-info">
+                            <span class="project-category">Brand Identity</span>
+                            <h4 class="project-title">Corporate Branding</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&h=400&fit=crop" alt="Social Media Design">
+                        <div class="project-info">
+                            <span class="project-category">Social Media</span>
+                            <h4 class="project-title">Instagram Campaigns</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Packaging Design">
+                        <div class="project-info">
+                            <span class="project-category">Packaging</span>
+                            <h4 class="project-title">Product Packaging</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop" alt="UI Design">
+                        <div class="project-info">
+                            <span class="project-category">UI/UX Design</span>
+                            <h4 class="project-title">App Interface Design</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SERVICES SECTION
+         ============================================ -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <h2 class="section-title">My Services</h2>
+                <p class="section-subtitle">Professional design services tailored to your needs</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Service 1 -->
+                <div class="col-md-6 col-lg-3 reveal">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h4>Logo Design</h4>
+                        <p>Unique and memorable logo designs that represent your brand identity perfectly.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="col-md-6 col-lg-3 reveal">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h4>Brand Identity</h4>
+                        <p>Complete brand packages including logos, colors, typography, and guidelines.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="col-md-6 col-lg-3 reveal">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <h4>Print Design</h4>
+                        <p>Professional print materials like business cards, brochures, and flyers.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="col-md-6 col-lg-3 reveal">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h4>Social Media</h4>
+                        <p>Engaging social media posts, banners, and complete profile optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS SECTION
+         ============================================ -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <h2 class="section-title">Testimonials</h2>
+                <p class="section-subtitle">What my clients say about working with me</p>
+            </div>
+            
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-item active">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                            <p class="testimonial-text">"Maryam is an incredibly talented designer! She captured our brand vision perfectly and delivered beyond our expectations. Her attention to detail and creativity are outstanding."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">AK</div>
+                                <div class="testimonial-info">
+                                    <h5>Fatima</h5>
+                                    <span>Digital Marketer.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                            <p class="testimonial-text">"Working with Maryam was a pleasure! She was professional, responsive, and truly understood our needs. The logo she designed became the face of our brand."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">SF</div>
+                                <div class="testimonial-info">
+                                    <h5>Sarah</h5>
+                                    <span>Wordpress Desinger</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                            <p class="testimonial-text">"Exceptional design skills! Maryam transformed our outdated branding into something modern and eye-catching. Our customers constantly compliment our new look."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">MR</div>
+                                <div class="testimonial-info">
+                                    <h5>Zahra</h5>
+                                    <span>Director</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" style="width: 10px; height: 10px;"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" style="width: 10px; height: 10px;"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" style="width: 10px; height: 10px;"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's create something amazing together</p>
+            </div>
+            
+            <div class="row g-5">
+                <!-- Contact Info -->
+                <div class="col-lg-5 reveal">
+                    <div class="glass-card h-100">
+                        <h3 class="mb-4">Contact Information</h3>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Address</h5>
+                                <p>Based On<br>Kabul, Afghanistan</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>hello@maryam-design.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+93 794 052 434</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="col-lg-7 reveal">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Send a Message</h3>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                        <label for="email">Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" placeholder="Your Message" style="height: 150px" required></textarea>
+                                        <label for="message">Your Message</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-gradient w-100 py-3">
+                                        <i class="fas fa-paper-plane me-2"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="footer-shape"></div>
+        <div class="container footer-content">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <span class="footer-logo">Maryam</span>
+                    <p>Creating stunning visual experiences that elevate brands and captivate audiences.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-decoration-none" style="color: var(--muted);">Home</a></li>
+                        <li><a href="#about" class="text-decoration-none" style="color: var(--muted);">About</a></li>
+                        <li><a href="#projects" class="text-decoration-none" style="color: var(--muted);">Projects</a></li>
+                        <li><a href="#services" class="text-decoration-none" style="color: var(--muted);">Services</a></li>
+                        <li><a href="#contact" class="text-decoration-none" style="color: var(--muted);">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2" style="color: var(--muted);">
+                            <i class="fas fa-map-marker-alt me-2" style="color: var(--glow-blue);"></i>
+                            Kabul, Afghanistan
+                        </li>
+                        <li class="mb-2" style="color: var(--muted);">
+                            <i class="fas fa-envelope me-2" style="color: var(--glow-blue);"></i>
+                            hello@maryam-design.com
+                        </li>
+                        <li style="color: var(--muted);">
+                            <i class="fas fa-phone-alt me-2" style="color: var(--glow-blue);"></i>
+                            +93 794 052 434
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2026 Maryam. All Rights Reserved. Designed with <i class="fas fa-heart" style="color: var(--accent-purple);"></i> by Maryam Sultani</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // ============================================
+        // NAVBAR SCROLL EFFECT
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // SCROLL REVEAL ANIMATION
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+            
+            revealElements.forEach((element) => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // ============================================
+        // SKILL BAR ANIMATION
+        // ============================================
+        const skillBars = document.querySelectorAll('.skill-fill');
+        
+        const animateSkillBars = () => {
+            skillBars.forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (barTop < windowHeight - 100) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateSkillBars);
+        animateSkillBars(); // Initial check
+
+        // ============================================
+        // 3D TILT EFFECT FOR SERVICE CARDS
+        // ============================================
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // ============================================
+        // PARALLAX EFFECT FOR FLOATING ELEMENTS
+        // ============================================
+        const floatingElements = document.querySelectorAll('.floating-element');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            floatingElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+
+        // ============================================
+        // FORM VALIDATION
+        // ============================================
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                // Show success message
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            }
+        });
+
+        // ============================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // CAROUSEL AUTO-PLAY
+        // ============================================
+        const carousel = document.querySelector('#testimonialCarousel');
+        const carouselInstance = new bootstrap.Carousel(carousel, {
+            interval: 5000,
+            ride: 'carousel'
+        });
+    </script>
+</body>
 </html>
